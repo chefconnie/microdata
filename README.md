@@ -43,8 +43,6 @@ Available [on HexDocs](https://hexdocs.pm/microdata). TL;DR:
 
 ## Roadmap
 - Figure out how to write the `@type` spec for `Microdata.Property` structs
-- Refactor shimmed XPath lookups, per [upstream issue](https://github.com/mischov/meeseeks/issues/42)
-    - While at it, rm `filter_top_level_items`
 - Refactor parser interface to return `{:ok, Microdata.Document.t()}|{:error, Microdata.Error.t()}` tuples
 - Refactor items parsing to return `{:error, Microdata.Error.t()}` with reason "no microdata items found", if that's the case
 - Community contribs would be appreciated to add `itemref` support, as well as JSON & RDFa parsing :)
