@@ -74,16 +74,12 @@ defmodule Microdata do
   end
 
   defp parse_items(doc) do
-    # |//*[@itemscope][not(ancestor::*[@itemscope][1])]"))
-    # &parse_item/1)
     doc
-    |> Meeseeks.all(xpath("/*[@itemscope]"))
-    |> filter_top_level_items(doc)
-    |> Enum.map(fn item -> parse_item(item, doc) end)
+    |> Meeseeks.all(xpath("/*[@itemscope]|//*[@itemscope][not(ancestor::*[@itemscope][1])]"))
+    |> Enum.map(&parse_item/1)
   end
 
-  #  defp parse_item(item) do
-  defp parse_item(item, doc) do
+  defp parse_item(item) do
     item_model = %Microdata.Item{
       id: item |> Meeseeks.attr("itemid") |> Microdata.Helpers.parse_item_id(),
       types:
@@ -93,26 +89,19 @@ defmodule Microdata do
         |> MapSet.new()
     }
 
-    # %{item_model | properties: parse_properties(item, item_model)}
-    %{item_model | properties: parse_properties(item, item_model, doc)}
+    %{item_model | properties: parse_properties(item, item_model)}
   end
 
-  # defp parse_properties(item, item_model) do
-  defp parse_properties(item, item_model, doc) do
-    # [not(ancestor::*[@itemscope][2])]
-    # |> Enum.map(fn prop -> parse_property(prop, item_model) end)
+  defp parse_properties(item, item_model) do
     item
-    |> Meeseeks.all(xpath("//*[@itemprop]"))
-    |> filter_top_level_items(doc)
-    |> Enum.map(fn prop -> parse_property(prop, item_model, doc) end)
+    |> Meeseeks.all(xpath("//*[@itemprop][not(ancestor::*[@itemscope][2])]"))
+    |> Enum.map(fn prop -> parse_property(prop, item_model) end)
   end
 
-  # defp parse_property(property, item) do
-  defp parse_property(property, item, doc) do
+  defp parse_property(property, item) do
     %Microdata.Property{
       names: property |> parse_property_names(item) |> MapSet.new(),
-      # value: parse_property_value(property)
-      value: parse_property_value(property, doc)
+      value: parse_property_value(property)
     }
   end
 
@@ -122,16 +111,15 @@ defmodule Microdata do
     |> Microdata.Helpers.parse_property_names(item)
   end
 
-  # defp parse_property_value(property) do
   # credo:disable-for-lines:35 Credo.Check.Refactor.CyclomaticComplexity
-  defp parse_property_value(property, doc) do
+  defp parse_property_value(property) do
     tag = Meeseeks.tag(property)
     itemscope = Meeseeks.attr(property, "itemscope")
     content = Meeseeks.attr(property, "content")
 
     cond do
       itemscope != nil ->
-        parse_item(property, doc)
+        parse_item(property)
 
       content != nil ->
         content
@@ -159,15 +147,5 @@ defmodule Microdata do
       true ->
         Meeseeks.text(property)
     end
-  end
-
-  defp filter_top_level_items(items, doc) do
-    item_ids = items |> Enum.map(fn item -> item.id end)
-
-    Enum.reject(items, fn item ->
-      Enum.any?(Meeseeks.Document.ancestors(doc, item.id), fn ancestor ->
-        Enum.member?(item_ids, ancestor)
-      end)
-    end)
   end
 end
