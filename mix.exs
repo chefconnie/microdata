@@ -26,7 +26,7 @@ defmodule Microdata.MixProject do
       {:credo, "~> 0.9.1", only: [:dev, :test], runtime: false},
       {:ex_doc, ">= 0.0.0", only: :dev},
       {:httpoison, "~> 1.0", optional: true},
-      {:meeseeks, "~> 0.9.3"}
+      {:meeseeks, "~> 0.9.5"}
     ]
   end
 
