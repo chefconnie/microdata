@@ -2,8 +2,9 @@ defmodule MicrodataTest do
   use ExUnit.Case, async: true
   doctest Microdata, except: [parse: 1]
 
-  @fixture_url "https://www.seriouseats.com/recipes/2010/09/sous-vide-101-duck-breast-recipe.html"
-  @fixture_file "./test/_cache/recipe.html"
+  @recipe_url "https://www.seriouseats.com/recipes/2010/09/sous-vide-101-duck-breast-recipe.html"
+  @recipe_file "./test/_cache/recipe.html"
+  @empty_file "./test/_cache/empty.html"
 
   setup_all do
     HTTPoison.start()
@@ -82,15 +83,25 @@ defmodule MicrodataTest do
   end
 
   test "converts from text", %{doc: doc} do
-    assert @fixture_file |> File.read!() |> Microdata.parse() == doc
+    assert @recipe_file |> File.read!() |> Microdata.parse() == {:ok, doc}
   end
 
   test "converts from file", %{doc: doc} do
-    assert Microdata.parse(file: @fixture_file) == doc
+    assert Microdata.parse(file: @recipe_file) == {:ok, doc}
   end
 
   @tag :remote
-  test "convertes from url", %{doc: doc} do
-    assert Microdata.parse(url: @fixture_url) == doc
+  test "converts from url", %{doc: doc} do
+    assert Microdata.parse(url: @recipe_url) == {:ok, doc}
+  end
+
+  test "returns an error tuple for documents with no items" do
+    assert Microdata.parse(file: @empty_file) ==
+             {:error,
+              %Microdata.Error{
+                type: :document,
+                reason: :no_items,
+                metadata: %{input: File.read!(@empty_file)}
+              }}
   end
 end

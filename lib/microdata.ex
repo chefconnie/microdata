@@ -33,45 +33,50 @@ defmodule Microdata do
   ## Examples (n.b. tested manually; not a doctest!)
 
       iex> Microdata.parse("<html itemscope itemtype='foo'><body><p itemprop='bar'>baz</p></body></html>")
-      %Microdata.Document{
-        items: [
-          %Microdata.Item{
-            types: ["foo"],
-            properties: [
-              %Microdata.Property{
-                id: nil,
-                properties: [
-                  %Microdata.Property{
-                    names: ["bar"],
-                    value: "baz"
-                  }
-                ],
-              }
-            ],
-            types: ["foo"]
-          }
-        ]
+      {:ok,
+        %Microdata.Document{
+          items: [
+            %Microdata.Item{
+              types: ["foo"],
+              properties: [
+                %Microdata.Property{
+                  id: nil,
+                  properties: [
+                    %Microdata.Property{
+                      names: ["bar"],
+                      value: "baz"
+                    }
+                  ],
+                }
+              ],
+              types: ["foo"]
+            }
+          ]
+        }
       }
 
       iex> Microdata.parse(file: "path/to/file.html")
-      %Microdata.Document{...}
+      {:ok, %Microdata.Document{...}}
 
       iex> Microdata.parse(url: "https://website.com/path/to/page")
-      %Microdata.Document{...}
+      {:ok, %Microdata.Document{...}}
   """
 
-  @spec parse(file: String.t()) :: Microdata.Document.t()
-  @spec parse(url: String.t()) :: Microdata.Document.t()
-  @spec parse(String.t()) :: Microdata.Document.t()
-  # credo:disable-for-lines:3 Credo.Check.Refactor.PipeChainStart
+  @spec parse(file: String.t()) :: {:ok, Document.t()} | {:error, Error.t()}
+  @spec parse(url: String.t()) :: {:ok, Document.t()} | {:error, Error.t()}
+  @spec parse(String.t()) :: {:ok, Document.t()} | {:error, Error.t()}
+  # credo:disable-for-lines:2 Credo.Check.Refactor.PipeChainStart
   def parse(file: path), do: File.read!(path) |> parse
   def parse(url: url), do: HTTPoison.get!(url).body |> parse
-  def parse(html), do: Meeseeks.parse(html) |> parse_document
 
-  defp parse_document(doc) do
-    %Microdata.Document{
-      items: parse_items(doc)
-    }
+  def parse(html) do
+    case html |> Meeseeks.parse() |> parse_items do
+      items when length(items) > 0 ->
+        {:ok, %Document{items: items}}
+
+      _ ->
+        {:error, Error.new(:document, :no_items, %{input: html})}
+    end
   end
 
   defp parse_items(doc) do
