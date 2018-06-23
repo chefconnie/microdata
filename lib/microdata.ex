@@ -79,7 +79,7 @@ defmodule Microdata do
     |> Enum.map(&parse_item/1)
   end
 
-  defp parse_item(item) do
+  defp parse_item(item, nest_level \\ 2) do
     item_model = %Microdata.Item{
       id: item |> Meeseeks.attr("itemid") |> Microdata.Helpers.parse_item_id(),
       types:
@@ -89,19 +89,21 @@ defmodule Microdata do
         |> MapSet.new()
     }
 
-    %{item_model | properties: parse_properties(item, item_model)}
+    %{item_model | properties: parse_properties(item, item_model, nest_level)}
   end
 
-  defp parse_properties(item, item_model) do
+  defp parse_properties(item, item_model, nest_level) do
+    selector = ".//*[@itemprop][not(ancestor::*[@itemscope][#{nest_level}])]"
+
     item
-    |> Meeseeks.all(xpath("//*[@itemprop][not(ancestor::*[@itemscope][2])]"))
-    |> Enum.map(fn prop -> parse_property(prop, item_model) end)
+    |> Meeseeks.all(xpath(selector))
+    |> Enum.map(fn prop -> parse_property(prop, item_model, nest_level) end)
   end
 
-  defp parse_property(property, item) do
+  defp parse_property(property, item, nest_level) do
     %Microdata.Property{
       names: property |> parse_property_names(item) |> MapSet.new(),
-      value: parse_property_value(property)
+      value: parse_property_value(property, nest_level)
     }
   end
 
@@ -112,14 +114,14 @@ defmodule Microdata do
   end
 
   # credo:disable-for-lines:35 Credo.Check.Refactor.CyclomaticComplexity
-  defp parse_property_value(property) do
+  defp parse_property_value(property, nest_level) do
     tag = Meeseeks.tag(property)
     itemscope = Meeseeks.attr(property, "itemscope")
     content = Meeseeks.attr(property, "content")
 
     cond do
       itemscope != nil ->
-        parse_item(property)
+        parse_item(property, nest_level + 1)
 
       content != nil ->
         content
