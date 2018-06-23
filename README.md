@@ -26,7 +26,7 @@ If you are using the provided `Microdata.parse(url: ...)` helper function, your 
 ```elixir
 def deps do
   [
-    {:microdata, "~> 0.0.1"}
+    {:microdata, "~> 0.1.0"}
   ]
 end
 ```
@@ -49,10 +49,23 @@ Available [on HexDocs](https://hexdocs.pm/microdata). TL;DR:
 - [Microdata spec](https://www.w3.org/TR/microdata)
 
 ## Credits
-We are building a conversational cooking assistant that uses Alexa & Google Home to answer questions like "what am I supposed to be doing?" and "what's next for the lasagna?" while you're in the kitchen, so you don't risk getting raw chicken juice or sticky sauces on your fancy cookbooks and expensive electronics.
+Thanks muchly to the team + community behind [meeseeks](https://hex.pm/packages/meeseeks), particularly [@mischov](https://github.com/mischov/), for the support and fixes on esoteric XPath issues.
 
-We wrote this lib for recipe parsing—ie so users can import recipes from all around the internet—and wanted to share it back with the community, as there are loads of ways you might use microdata in your own projects. Hope you enjoy!
+## An Invitation
+![Swedish Chef](https://media.giphy.com/media/LVBH3rg1BUROw/giphy.gif)
 
-If you'd like to join our private beta, please send an email to [hi [AT] cookformom [DOT] com](mailto:hi@cookformom.com), letting us know A) which voice assistant you use; B) your favourite meal; and C) what you want to learn to cook next.
+Next time you're cooking, **don't risk** getting **raw chicken juice** or **sticky sauces** on your **fancy cookbooks** and **expensive electronics**! We are working on **Connie**, a **conversational cooking assistant** that uses Alexa & Google Home to answer questions like:
+
+> What am I supposed to be doing?
+> 
+> What's next for the lasagna?
+
+We wrote this lib to parse imported recipes and wanted to share it back with the community, as there are loads of ways you might use microdata in your own projects. Hope you enjoy!
+
+If you'd like to join our **private beta**, please send an email to [hi [AT] cookformom [DOT] com](mailto:hi@cookformom.com), letting us know:
+
+- Which voice assistant you use;
+- Your favourite meal; and
+- What you want to learn to cook next.
 
 Have a nice day :)
