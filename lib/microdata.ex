@@ -18,6 +18,7 @@ defmodule Microdata do
   Have a nice day :)
   """
 
+  alias Microdata.{Document, Error, Helpers, Item, Property}
   import Meeseeks.XPath
 
   @tags_source ~w(audio embed iframe img source track video)
@@ -80,12 +81,12 @@ defmodule Microdata do
   end
 
   defp parse_item(item, nest_level \\ 2) do
-    item_model = %Microdata.Item{
-      id: item |> Meeseeks.attr("itemid") |> Microdata.Helpers.parse_item_id(),
+    item_model = %Item{
+      id: item |> Meeseeks.attr("itemid") |> Helpers.parse_item_id(),
       types:
         item
         |> Meeseeks.attr("itemtype")
-        |> Microdata.Helpers.parse_item_types()
+        |> Helpers.parse_item_types()
         |> MapSet.new()
     }
 
@@ -101,7 +102,7 @@ defmodule Microdata do
   end
 
   defp parse_property(property, item, nest_level) do
-    %Microdata.Property{
+    %Property{
       names: property |> parse_property_names(item) |> MapSet.new(),
       value: parse_property_value(property, nest_level)
     }
@@ -110,7 +111,7 @@ defmodule Microdata do
   defp parse_property_names(property, item) do
     property
     |> Meeseeks.attr("itemprop")
-    |> Microdata.Helpers.parse_property_names(item)
+    |> Helpers.parse_property_names(item)
   end
 
   # credo:disable-for-lines:35 Credo.Check.Refactor.CyclomaticComplexity
@@ -128,15 +129,15 @@ defmodule Microdata do
 
       Enum.member?(@tags_source, tag) ->
         url = Meeseeks.attr(property, "source")
-        if Microdata.Helpers.absolute_url?(url), do: url, else: ""
+        if Helpers.absolute_url?(url), do: url, else: ""
 
       Enum.member?(@tags_href, tag) ->
         url = Meeseeks.attr(property, "href")
-        if Microdata.Helpers.absolute_url?(url), do: url, else: ""
+        if Helpers.absolute_url?(url), do: url, else: ""
 
       Enum.member?(@tags_data, tag) ->
         url = Meeseeks.attr(property, "data")
-        if Microdata.Helpers.absolute_url?(url), do: url, else: ""
+        if Helpers.absolute_url?(url), do: url, else: ""
 
       Enum.member?(@tags_value, tag) ->
         value = Meeseeks.attr(property, "value")
