@@ -22,15 +22,16 @@ If you are using the provided `Microdata.parse(url: ...)` helper function, your 
 ## Installation
 
 - Ensure your build machine has the Rust compiler installed (see above)
-- Add `microdata` to your `mix.exs` deps:
+- Add `microdata` to your `mix.exs` deps
+    - If you plan to use the `Microdata.parse(url: ...)` helper function, include a line for `{:httpoison, "~> 1.0"}`
 ```elixir
 def deps do
   [
-    {:microdata, "~> 0.1.0"}
+    {:microdata, "~> 0.1.0"},
+    {:httpoison, "~> 1.0"} # optional
   ]
 end
 ```
-    - Optionally, include a line for `{:httpoison, "~> 1.0"}`, if you plan to use the `Microdata.parse(url: ...)` helper function
 - Run `mix deps.get`
 
 ## Usage

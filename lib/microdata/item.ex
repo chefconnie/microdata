@@ -1,6 +1,6 @@
 defmodule Microdata.Item do
   @moduledoc """
-  Microdata.Item structs are read from a microdata document.
+  `Microdata.Item` structs are read from a `Microdata.Document`'s source.
   """
 
   defstruct types: nil, id: nil, properties: nil
@@ -15,24 +15,26 @@ defmodule Microdata.Item do
   Resolve the vocabulary of a typed item or list of types.
 
   ## Examples
+  ```
+  iex> Microdata.Item.vocabulary(%Microdata.Item{})
+  nil
 
-    iex> Microdata.Item.vocabulary(%Microdata.Item{})
-    nil
+  iex> Microdata.Item.vocabulary(%Microdata.Item{types: MapSet.new(["foo"])})
+  "foo/"
 
-    iex> Microdata.Item.vocabulary(%Microdata.Item{types: MapSet.new(["foo"])})
-    "foo/"
+  iex> Microdata.Item.vocabulary(["foo", "bar"])
+  "foo/"
 
-    iex> Microdata.Item.vocabulary(["foo", "bar"])
-    "foo/"
+  iex> Microdata.Item.vocabulary(["foo#bar"])
+  "foo"
 
-    iex> Microdata.Item.vocabulary(["foo#bar"])
-    "foo"
+  iex> Microdata.Item.vocabulary(["foo/bar"])
+  "foo/"
 
-    iex> Microdata.Item.vocabulary(["foo/bar"])
-    "foo/"
+  iex> Microdata.Item.vocabulary(["foo/bar/baz"])
+  "foo/bar/"
 
-    iex> Microdata.Item.vocabulary(["foo/bar/baz"])
-    "foo/bar/"
+  ```
   """
   @spec vocabulary(Microdata.Item.t()) :: String.t() | nil
   @spec vocabulary(MapSet.t()) :: String.t() | nil
@@ -50,7 +52,7 @@ defmodule Microdata.Item do
   Lookup item properties with matching names.
 
   ## Examples (not a doctest)
-
+  ```
     iex> Microdata.Item.lookup(item, "foo")
     [%Microdata.Property{names: ["foo"], ...}, ...]
 
@@ -59,6 +61,8 @@ defmodule Microdata.Item do
       %Microdata.Property{names: ["foo"], ...},
       %Microdata.Property{names: ["bar"], ...}, ...
     ]
+
+  ```
   """
   @spec lookup(Microdata.Item.t(), String.t()) :: [Microdata.Property.t()]
   @spec lookup(Microdata.Item.t(), [String.t()]) :: [Microdata.Property.t()]

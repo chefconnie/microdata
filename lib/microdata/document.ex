@@ -1,6 +1,6 @@
 defmodule Microdata.Document do
   @moduledoc """
-  Microdata.Document is the base struct returned after parsing a microdata document.
+  `Microdata.Document` is the base struct returned after parsing a microdata document.
   """
 
   @enforce_keys [:items]
@@ -11,15 +11,17 @@ defmodule Microdata.Document do
   Lookup top-level items in the document with matching types.
 
   ## Examples (not a doctest)
+  ```
+  iex> Microdata.Document.lookup(doc, "foo")
+  [%Microdata.Item{types: ["foo"], ...}, ...]
 
-    iex> Microdata.Document.lookup(doc, "foo")
-    [%Microdata.Item{types: ["foo"], ...}, ...]
+  iex> Microdata.Document.lookup(doc, ["foo", "bar"])
+  [
+    %Microdata.Item{types: ["foo"], ...},
+    %Microdata.Item{types: ["bar"], ...}, ...
+  ]
 
-    iex> Microdata.Document.lookup(doc, ["foo", "bar"])
-    [
-      %Microdata.Item{types: ["foo"], ...},
-      %Microdata.Item{types: ["bar"], ...}, ...
-    ]
+  ```
   """
   @spec lookup(Microdata.Document.t(), String.t()) :: [Microdata.Item.t()]
   @spec lookup(Microdata.Document.t(), [String.t()]) :: [Microdata.Item.t()]

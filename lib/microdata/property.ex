@@ -1,6 +1,6 @@
 defmodule Microdata.Property do
   @moduledoc """
-  Microdata.Property structs are key/value mappings for microdata items' internal data.
+  `Microdata.Property` structs are key/value mappings for data parsed from `Microdata.Item`s' source.
   """
 
   @enforce_keys [:names, :value]
