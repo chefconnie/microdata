@@ -120,9 +120,15 @@ defmodule Microdata do
   @spec parse(file: String.t()) :: {:ok, Document.t()} | {:error, Error.t()}
   @spec parse(url: String.t()) :: {:ok, Document.t()} | {:error, Error.t()}
   @spec parse(String.t()) :: {:ok, Document.t()} | {:error, Error.t()}
-  # credo:disable-for-lines:2 Credo.Check.Refactor.PipeChainStart
+  # credo:disable-for-next-line Credo.Check.Refactor.PipeChainStart
   def parse(file: path), do: File.read!(path) |> parse
-  def parse(url: url), do: HTTPoison.get!(url).body |> parse
+
+  if Code.ensure_loaded?(HTTPoison) do
+    # credo:disable-for-next-line Credo.Check.Refactor.PipeChainStart
+    def parse(url: url), do: HTTPoison.get!(url).body |> parse
+  else
+    def parse(url: _), do: raise("HTTPoison required to for the url option")
+  end
 
   def parse(html) do
     case html |> Meeseeks.parse() |> parse_items do
