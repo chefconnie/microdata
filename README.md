@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/anulman/microdata.svg?branch=master)](https://travis-ci.org/anulman/microdata)
+[![Microdata version](https://img.shields.io/hexpm/v/microdata.svg)](https://hex.pm/packages/microdata)
+
 # Microdata
 
 This lib parses Microdata `Item`s and their `Property`s from source `Document`s.
