@@ -7,11 +7,16 @@ defmodule Microdata.MixProject do
       version: "0.1.0",
       elixir: "~> 1.6",
       start_permanent: Mix.env() == :prod,
+      deps: deps(),
+
+      # Hex
       description: description(),
       package: package(),
-      deps: deps(),
+
+      # HexDocs
       name: "Microdata",
-      source_url: "https://github.com/anulman/microdata"
+      source_url: "https://github.com/anulman/microdata",
+      docs: [main: "Microdata"]
     ]
   end
 
