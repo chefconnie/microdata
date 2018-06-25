@@ -42,7 +42,6 @@ Available [on HexDocs](https://hexdocs.pm/microdata). TL;DR:
     - Uses `HTTPoison ~> 1.0` under the hood; this is an optional dep so you'll want to add it to your `mix.exs` deps as well (see above)
 
 ## Roadmap
-- Figure out how to write the `@type` spec for `Microdata.Property` structs
 - Community contribs would be appreciated to add `itemref` support, as well as JSON & RDFa parsing :)
 
 ## Helpful Links

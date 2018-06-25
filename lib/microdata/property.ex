@@ -5,6 +5,9 @@ defmodule Microdata.Property do
 
   @enforce_keys [:names, :value]
   defstruct names: nil, value: nil
-  #  @type t :: %Microdata.Property{names: MapSet.t(String.t()), value: String.t()}
-  #  @type t :: %Microdata.Property{names: MapSet.t(String.t()), value: Microdata.Item.t()}
+
+  @type t :: %Microdata.Property{
+          names: MapSet.t(String.t()),
+          value: String.t() | Microdata.Item.t()
+        }
 end
