@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/anulman/microdata.svg?branch=master)](https://travis-ci.org/anulman/microdata)
+[![Build Status](https://travis-ci.org/chefconnie/microdata.svg?branch=master)](https://travis-ci.org/chefconnie/microdata)
 [![Microdata version](https://img.shields.io/hexpm/v/microdata.svg)](https://hex.pm/packages/microdata)
 
 # Microdata

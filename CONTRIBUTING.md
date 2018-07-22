@@ -21,7 +21,7 @@ Make your change. Add tests for your change. Make the tests pass:
 
 Push to your fork and [submit a pull request][pr].
 
-[pr]: https://github.com/anulman/microdata/compare/
+[pr]: https://github.com/chefconnie/microdata/compare/
 
 At this point you're waiting on us. We like to at least comment on pull requests
 within three business days (and, typically, one business day). We may suggest

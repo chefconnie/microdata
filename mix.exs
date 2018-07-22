@@ -15,7 +15,7 @@ defmodule Microdata.MixProject do
 
       # HexDocs
       name: "Microdata",
-      source_url: "https://github.com/anulman/microdata",
+      source_url: "https://github.com/chefconnie/microdata",
       docs: [main: "Microdata"]
     ]
   end
@@ -42,7 +42,7 @@ defmodule Microdata.MixProject do
   defp package do
     [
       licenses: ["MIT"],
-      links: %{Github: "https://github.com/anulman/microdata"},
+      links: %{Github: "https://github.com/chefconnie/microdata"},
       maintainers: ["anulman"]
     ]
   end
