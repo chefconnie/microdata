@@ -43,7 +43,7 @@ defmodule Microdata.MixProject do
     [
       licenses: ["MIT"],
       links: %{Github: "https://github.com/chefconnie/microdata"},
-      maintainers: ["anulman"]
+      maintainers: ["anulman", "mtrudel"]
     ]
   end
 end
