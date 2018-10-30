@@ -132,7 +132,7 @@ defmodule Microdata do
 
   def parse(html) do
     case html |> Meeseeks.parse() |> parse_items do
-      items when length(items) > 0 ->
+      items when items != [] ->
         {:ok, %Document{items: items}}
 
       _ ->
