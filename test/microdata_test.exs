@@ -24,7 +24,7 @@ defmodule MicrodataTest do
             },
             %Microdata.Property{
               names: MapSet.new(["http://schema.org/image"]),
-              value: ""
+              value: "https://www.seriouseats.com/recipes/images/20100910-duck-27.jpg"
             },
             %Microdata.Property{
               names: MapSet.new(["http://schema.org/description"]),

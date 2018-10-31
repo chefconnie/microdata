@@ -74,7 +74,7 @@ defmodule Microdata do
   alias Microdata.{Document, Error, Helpers, Item, Property}
   import Meeseeks.XPath
 
-  @tags_source ~w(audio embed iframe img source track video)
+  @tags_src ~w(audio embed iframe img source track video)
   @tags_href ~w(a area link)
   @tags_data ~w(object)
   @tags_value ~w(data meter)
@@ -132,7 +132,7 @@ defmodule Microdata do
 
   def parse(html) do
     case html |> Meeseeks.parse() |> parse_items do
-      items when length(items) > 0 ->
+      items when items != [] ->
         {:ok, %Document{items: items}}
 
       _ ->
@@ -193,8 +193,8 @@ defmodule Microdata do
       content != nil ->
         content
 
-      Enum.member?(@tags_source, tag) ->
-        url = Meeseeks.attr(property, "source")
+      Enum.member?(@tags_src, tag) ->
+        url = Meeseeks.attr(property, "src")
         if Helpers.absolute_url?(url), do: url, else: ""
 
       Enum.member?(@tags_href, tag) ->
