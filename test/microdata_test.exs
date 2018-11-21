@@ -93,6 +93,189 @@ defmodule MicrodataTest do
       assert Microdata.parse(url: @recipe_url) == {:ok, doc}
     end
   end
+
+  describe "json-ld annotations" do
+    @recipe_url "https://food52.com/recipes/22467-rao-s-meatballs"
+    @recipe_file "./test/_cache/ld-recipe.html"
+
+    setup do
+      doc = %Microdata.Document{
+        items: [
+          %Microdata.Item{
+            id: nil,
+            properties: [
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/aggregateRating"]),
+                value: %Microdata.Item{
+                  id: nil,
+                  properties: [
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/ratingCount"]),
+                      value: "4"
+                    },
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/ratingValue"]),
+                      value: "5.0"
+                    }
+                  ],
+                  types: MapSet.new()
+                }
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/author"]),
+                value: %Microdata.Item{
+                  id: nil,
+                  properties: [
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/name"]),
+                      value: "Genius Recipes"
+                    }
+                  ],
+                  types: MapSet.new(["http://schema.org/Person"])
+                }
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/commentCount"]),
+                value: 125
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/cookTime"]),
+                value: "PT0H30M"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/datePublished"]),
+                value: "2013-06-11 11:34:23 -0400"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/description"]),
+                value:
+                  "Spaghetti and meatballs doesn&#39;t have to be a meal that you slave over and simmer all day, nor does it need to put you into hibernation once you&#39;ve eaten it. You can mix, shape, and fry these meatballs in exactly the time it takes for Marcella Hazan&#39;s tomato, butter, and onion sauce to cook (or even this 20-minute marinara, if you&#39;re really fast). The caveats: 1. Make your own fresh breadcrumbs (i.e. grind up some stale bread) or, if your crumbs are purchased and quite fine, cut back by half, and don&#39;t use quite as much water. I can&#39;t be responsible for your stiff, mealy dumpling-balls if you don&#39;t heed this. 2. Use local, pastured, not very lean meats if at all possible. Good flavor and fat go a long way here. Adapted slightly from Rao&#39;s Cookbook by Frank Pellegrino (Random House, 1998)"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/image"]),
+                value:
+                  "https://images.food52.com/iqN_Jo1Q92Xb_3eWb9-fEQYqPJQ=/1200x1200/cc489969-9927-48b9-87bd-7c360d6ac2bb--2013-0611_genius-meatballs-013.jpg"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/image"]),
+                value:
+                  "https://images.food52.com/K6W36E3fRvRUbAVqS6T9MYT5WpY=/1200x900/cc489969-9927-48b9-87bd-7c360d6ac2bb--2013-0611_genius-meatballs-013.jpg"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/image"]),
+                value:
+                  "https://images.food52.com/EOpCnydvgYDpMa2umb8Fp3ynuNg=/1200x675/cc489969-9927-48b9-87bd-7c360d6ac2bb--2013-0611_genius-meatballs-013.jpg"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/keywords"]),
+                value:
+                  "Beef, Pasta, Make Ahead, Serves a Crowd, Spring, Summer, Fall, Winter, Christmas, Father&#39;s Day, Valentine&#39;s Day, Meatball, Parsley, Pork, Fry"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/mainEntityOfPage"]),
+                value: "https://food52.com/recipes/22467-rao-s-meatballs"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/name"]),
+                value: "Rao&#39;s Meatballs"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/prepTime"]),
+                value: "PT0H15M"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeCategory"]),
+                value: "Entree"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeCuisine"]),
+                value: "Italian"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeIngredient"]),
+                value: "1 pound lean ground beef"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeIngredient"]),
+                value: "1/2 pound ground veal"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeIngredient"]),
+                value: "1/2 pound ground pork"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeIngredient"]),
+                value: "2 large eggs"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeIngredient"]),
+                value: "1 cup freshly grated Pecorino Romano cheese"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeIngredient"]),
+                value: "1 1/2 tablespoons chopped Italian parsley"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeIngredient"]),
+                value: "1/2 small clove garlic, peeled and minced"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeIngredient"]),
+                value: "1 pinch Kosher or sea salt, to taste"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeIngredient"]),
+                value: "1 pinch Freshly ground pepper, to taste"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeIngredient"]),
+                value: "2 cups fresh bread crumbs"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeIngredient"]),
+                value: "2 cups lukewarm water"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeIngredient"]),
+                value: "1 cup good quality olive oil, for cooking"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeIngredient"]),
+                value:
+                  " Your favorite marinara sauce (we like Marcella Hazan\\'s Tomato Sauce with Onion and Butter, also on Food52)"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeInstructions"]),
+                value:
+                  "Combine beef, veal, and pork in a large bowl. Add the eggs, cheese, parsley, garlic, and salt and pepper to taste. Using your hands, blend ingredients together. Blend bread crumbs into meat mixture. Slowly add water, 1 cup at a time, until the mixture is quite moist. Shape into 2 1/2 to 3-inch balls.\nHeat oil in a large sauté pan. When oil is very hot but not smoking, fry meatballs in batches. When the bottom half of the meatball is very brown and slightly crisp, turn and cook top half. Remove from heat and drain on paper towels.\nLower cooked meatballs into simmering marinara sauce and cook for 15 minutes. Serve alone or with pasta.\n"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeYield"]),
+                value: "Makes 28 meatballs"
+              }
+            ],
+            types: MapSet.new(["http://schema.org/Recipe"])
+          }
+        ]
+      }
+
+      {:ok, doc: doc}
+    end
+
+    test "converts from text", %{doc: doc} do
+      assert @recipe_file |> File.read!() |> Microdata.parse() == {:ok, doc}
+    end
+
+    test "converts from file", %{doc: doc} do
+      assert Microdata.parse(file: @recipe_file) == {:ok, doc}
+    end
+
+    @tag :remote
+    test "converts from url", %{doc: doc} do
+      assert Microdata.parse(url: @recipe_url) == {:ok, doc}
+    end
+  end
+
   describe "no annotations" do
     @empty_file "./test/_cache/empty.html"
 

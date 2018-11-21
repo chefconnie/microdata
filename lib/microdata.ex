@@ -40,9 +40,10 @@ defmodule Microdata do
   In your `config.exs` you can can set the value of `{:microdata, :strategies} to a list of modules to consult (in order)
   when looking for microdata conent. Modules must conform to `Microdat.Strategy`. By default, the Microdata library uses, in order:
    * `Microdata.Strategy.HTMLMicroformat` - Looks for microdata in HTML tags
+   * `Microdata.Strategy.JSONLD` - Looks for microdata in JSON-LD script tags
 
   ### Roadmap
-  - Community contribs would be appreciated to add `itemref` support, as well as JSON & RDFa parsing :)
+  - Community contribs would be appreciated to add `itemref` support :)
 
   ### Helpful Links
   - [Microdata spec](https://www.w3.org/TR/microdata)
@@ -109,7 +110,7 @@ defmodule Microdata do
   ```
   """
 
-  @default_strategies [Microdata.Strategy.HTMLMicrodata]
+  @default_strategies [Microdata.Strategy.HTMLMicrodata, Microdata.Strategy.JSONLD]
 
   @spec parse(file: String.t()) :: {:ok, Document.t()} | {:error, Error.t()}
   @spec parse(url: String.t()) :: {:ok, Document.t()} | {:error, Error.t()}
@@ -117,12 +118,8 @@ defmodule Microdata do
   # credo:disable-for-next-line Credo.Check.Refactor.PipeChainStart
   def parse(file: path), do: File.read!(path) |> parse
 
-  if Code.ensure_loaded?(HTTPoison) do
-    # credo:disable-for-next-line Credo.Check.Refactor.PipeChainStart
-    def parse(url: url), do: HTTPoison.get!(url).body |> parse
-  else
-    def parse(url: _), do: raise("HTTPoison required to for the url option")
-  end
+  # credo:disable-for-next-line Credo.Check.Refactor.PipeChainStart
+  def parse(url: url), do: HTTPoison.get!(url).body |> parse
 
   def parse(html) do
     doc = html |> Meeseeks.parse()
