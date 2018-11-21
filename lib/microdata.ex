@@ -2,12 +2,6 @@ defmodule Microdata do
   @moduledoc """
   `Microdata` is an Elixir library for parsing [microdata](https://www.w3.org/TR/microdata) from a provided document.
 
-  ### Caveats
-  - `itemref` lookups are not yet supported
-  - Only supports HTML parsing, ie no JSON or RDFa support
-
-  If you need any of the above, contribs adding this support are most welcome!
-
   ### Dependencies
   #### Meeseeks + Rust
   Microdata parses HTML with [Meeseeks](https://github.com/mischov/meeseeks), which depends on [html5ever](https://github.com/servo/html5ever) via [meeseeks_html5ever](https://github.com/mischov/meeseeks_html5ever).
@@ -42,6 +36,11 @@ defmodule Microdata do
   - `Microdata.parse(url: "https://website.com/path/to/page")`, if you'd like to fetch & parse
       - Uses `HTTPoison ~> 1.0` under the hood; this is an optional dep so you'll want to add it to your `mix.exs` deps as well (see above)
 
+  ### Configuration
+  In your `config.exs` you can can set the value of `{:microdata, :strategies} to a list of modules to consult (in order)
+  when looking for microdata conent. Modules must conform to `Microdat.Strategy`. By default, the Microdata library uses, in order:
+   * `Microdata.Strategy.HTMLMicroformat` - Looks for microdata in HTML tags
+
   ### Roadmap
   - Community contribs would be appreciated to add `itemref` support, as well as JSON & RDFa parsing :)
 
@@ -71,14 +70,7 @@ defmodule Microdata do
   Have a nice day :)
   """
 
-  alias Microdata.{Document, Error, Helpers, Item, Property}
-  import Meeseeks.XPath
-
-  @tags_src ~w(audio embed iframe img source track video)
-  @tags_href ~w(a area link)
-  @tags_data ~w(object)
-  @tags_value ~w(data meter)
-  @tags_datetime ~w(datetime)
+  alias Microdata.{Document, Error}
 
   @doc """
   Parses Microdata from a given document, and returns a %Microdata.Document{} struct.
@@ -117,6 +109,8 @@ defmodule Microdata do
   ```
   """
 
+  @default_strategies [Microdata.Strategy.HTMLMicrodata]
+
   @spec parse(file: String.t()) :: {:ok, Document.t()} | {:error, Error.t()}
   @spec parse(url: String.t()) :: {:ok, Document.t()} | {:error, Error.t()}
   @spec parse(String.t()) :: {:ok, Document.t()} | {:error, Error.t()}
@@ -131,8 +125,17 @@ defmodule Microdata do
   end
 
   def parse(html) do
-    case html |> Meeseeks.parse() |> parse_items do
-      items when items != [] ->
+    doc = html |> Meeseeks.parse()
+
+    strategies()
+    |> Enum.find_value(fn strategy ->
+      case strategy.parse_items(doc) do
+        items when items != [] -> items
+        _ -> nil
+      end
+    end)
+    |> case do
+      items when not is_nil(items) ->
         {:ok, %Document{items: items}}
 
       _ ->
@@ -140,81 +143,7 @@ defmodule Microdata do
     end
   end
 
-  defp parse_items(doc) do
-    doc
-    |> Meeseeks.all(xpath("/*[@itemscope]|//*[@itemscope][not(ancestor::*[@itemscope][1])]"))
-    |> Enum.map(&parse_item/1)
-  end
-
-  defp parse_item(item, nest_level \\ 2) do
-    item_model = %Item{
-      id: item |> Meeseeks.attr("itemid") |> Helpers.parse_item_id(),
-      types:
-        item
-        |> Meeseeks.attr("itemtype")
-        |> Helpers.parse_item_types()
-        |> MapSet.new()
-    }
-
-    %{item_model | properties: parse_properties(item, item_model, nest_level)}
-  end
-
-  defp parse_properties(item, item_model, nest_level) do
-    selector = ".//*[@itemprop][not(ancestor::*[@itemscope][#{nest_level}])]"
-
-    item
-    |> Meeseeks.all(xpath(selector))
-    |> Enum.map(fn prop -> parse_property(prop, item_model, nest_level) end)
-  end
-
-  defp parse_property(property, item, nest_level) do
-    %Property{
-      names: property |> parse_property_names(item) |> MapSet.new(),
-      value: parse_property_value(property, nest_level)
-    }
-  end
-
-  defp parse_property_names(property, item) do
-    property
-    |> Meeseeks.attr("itemprop")
-    |> Helpers.parse_property_names(item)
-  end
-
-  # credo:disable-for-lines:35 Credo.Check.Refactor.CyclomaticComplexity
-  defp parse_property_value(property, nest_level) do
-    tag = Meeseeks.tag(property)
-    itemscope = Meeseeks.attr(property, "itemscope")
-    content = Meeseeks.attr(property, "content")
-
-    cond do
-      itemscope != nil ->
-        parse_item(property, nest_level + 1)
-
-      content != nil ->
-        content
-
-      Enum.member?(@tags_src, tag) ->
-        url = Meeseeks.attr(property, "src")
-        if Helpers.absolute_url?(url), do: url, else: ""
-
-      Enum.member?(@tags_href, tag) ->
-        url = Meeseeks.attr(property, "href")
-        if Helpers.absolute_url?(url), do: url, else: ""
-
-      Enum.member?(@tags_data, tag) ->
-        url = Meeseeks.attr(property, "data")
-        if Helpers.absolute_url?(url), do: url, else: ""
-
-      Enum.member?(@tags_value, tag) ->
-        value = Meeseeks.attr(property, "value")
-        if value != nil, do: value, else: Meeseeks.text(property)
-
-      Enum.member?(@tags_datetime, tag) ->
-        value = Meeseeks.attr(property, "datetime")
-        if value != nil, do: value, else: Meeseeks.text(property)
-
-      true ->
-        Meeseeks.text(property)
-    end
+  defp strategies do
+    Application.get_env(:microdata, :strategies, @default_strategies)
   end
 end
