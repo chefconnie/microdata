@@ -30,8 +30,9 @@ defmodule Microdata.MixProject do
     [
       {:credo, "~> 0.9.1", only: [:dev, :test], runtime: false},
       {:ex_doc, ">= 0.0.0", only: :dev},
-      {:httpoison, "~> 1.0", optional: true},
-      {:meeseeks, "~> 0.10.0"}
+      {:httpoison, "~> 1.0"},
+      {:meeseeks, "~> 0.10.0"},
+      {:mix_test_watch, "~> 0.0", only: :dev, runtime: false}
     ]
   end
 
