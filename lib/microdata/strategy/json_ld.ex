@@ -68,7 +68,8 @@ defmodule Microdata.Strategy.JSONLD do
         context
 
       context when is_binary(context) ->
-        download_context(context)
+        context
+        |> download_context()
         |> Poison.decode!()
         |> extract_context()
 
