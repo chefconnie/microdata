@@ -41,7 +41,7 @@ defmodule Microdata do
   parse. Patches to add such functionality are welcome!
 
   ### Configuration
-  In your `config.exs` you can can set the value of `{:microdata, :strategies} to a list of modules to consult (in order)
+  In your `config.exs` you can can set the value of `{:microdata, :strategies}` to a list of modules to consult (in order)
   when looking for microdata content. Modules must conform to `Microdata.Strategy`. By default, the Microdata library uses, in order:
    * `Microdata.Strategy.HTMLMicroformat` - Looks for microdata in HTML tags
    * `Microdata.Strategy.JSONLD` - Looks for microdata in JSON-LD script tags
