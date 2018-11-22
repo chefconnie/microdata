@@ -36,6 +36,10 @@ defmodule Microdata do
   - `Microdata.parse(url: "https://website.com/path/to/page")`, if you'd like to fetch & parse
       - Uses `HTTPoison ~> 1.0` under the hood; this is an optional dep so you'll want to add it to your `mix.exs` deps as well (see above)
 
+  It should be noted that even though the library will find and read JSON-LD in an HTML page's `<script>` tags, it will
+  not process JSON-LD returned as the body of an HTTP response. Passing a JSON-LD string as text will likewise not
+  parse. Patches to add such functionality are welcome!
+
   ### Configuration
   In your `config.exs` you can can set the value of `{:microdata, :strategies} to a list of modules to consult (in order)
   when looking for microdata content. Modules must conform to `Microdata.Strategy`. By default, the Microdata library uses, in order:
