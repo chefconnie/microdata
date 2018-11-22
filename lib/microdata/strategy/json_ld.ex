@@ -68,13 +68,28 @@ defmodule Microdata.Strategy.JSONLD do
         context
 
       context when is_binary(context) ->
-        HTTPoison.get!(context, [Accept: "application/ld+json"], follow_redirect: true).body
+        download_context(context)
         |> Poison.decode!()
         |> extract_context()
 
       _ ->
         %{}
     end
+  end
+
+  defp download_context("http://schema.org") do
+    read_locally("schema.org.json")
+  end
+
+  defp download_context(context) do
+    HTTPoison.get!(context, [Accept: "application/ld+json"], follow_redirect: true).body
+  end
+
+  defp read_locally(file) do
+    :code.priv_dir(:microdata)
+    |> Path.join("schemas")
+    |> Path.join(file)
+    |> File.read!()
   end
 
   defp normalize_definitions(context, parent_context) do
