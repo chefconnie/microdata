@@ -1,6 +1,6 @@
 defmodule Microdata.Strategy.HTMLMicrodata do
   @moduledoc """
-  `HTMLMicrodata` defines a strategy to extract HTML microdata from a `Meeseeks.Document`, based on the W3C [HTML Microdata format](https://www.w3.org/TR/microdata/).
+  `Microdata.Strategy.HTMLMicrodata` defines a strategy to extract HTML microdata from a `Meeseeks.Document`, based on the W3C [HTML Microdata format](https://www.w3.org/TR/microdata/).
 
   ### Caveats
   - `itemref` lookups are not yet supported

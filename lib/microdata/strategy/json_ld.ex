@@ -1,9 +1,9 @@
 defmodule Microdata.Strategy.JSONLD do
   @moduledoc """
-  `JSONLD` defines a strategy to extract linked data from a `Meeseeks.Document`, based on the W3C [JSON-LD standard](https://www.w3.org/TR/json-ld/).
+  `Microdata.Strategy.JSONLD` defines a strategy to extract linked data from a `Meeseeks.Document`, based on the W3C [JSON-LD standard](https://www.w3.org/TR/json-ld/).
 
   ### Caveats
-  - Almost nothing in section 6 of the [JSON-LD specification](https://www.w3.org/TR/json-ld/) is implemented
+  - Only a small fraction of section 6 of the [JSON-LD specification](https://www.w3.org/TR/json-ld/) is implemented
   """
 
   @behaviour Microdata.Strategy
