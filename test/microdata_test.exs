@@ -276,6 +276,218 @@ defmodule MicrodataTest do
     end
   end
 
+  describe "json-ld annotations with top-level arrays" do
+    @recipe_url "https://www.foodandwine.com/recipes/mango-fool"
+    @recipe_file "./test/_cache/ld-array-recipe.html"
+
+    setup do
+      doc = %Microdata.Document{
+        items: [
+          %Microdata.Item{
+            id: nil,
+            properties: [
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/itemListElement"]),
+                value: %Microdata.Item{
+                  id: nil,
+                  properties: [
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/item"]),
+                      value: "https://www.foodandwine.com"
+                    },
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/position"]),
+                      value: 1
+                    }
+                  ],
+                  types: MapSet.new(["http://schema.org/ListItem"])
+                }
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/itemListElement"]),
+                value: %Microdata.Item{
+                  id: nil,
+                  properties: [
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/item"]),
+                      value: "https://www.foodandwine.com/fruits"
+                    },
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/position"]),
+                      value: 2
+                    }
+                  ],
+                  types: MapSet.new(["http://schema.org/ListItem"])
+                }
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/itemListElement"]),
+                value: %Microdata.Item{
+                  id: nil,
+                  properties: [
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/item"]),
+                      value: "https://www.foodandwine.com/fruits/tropical-fruit"
+                    },
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/position"]),
+                      value: 3
+                    }
+                  ],
+                  types: MapSet.new(["http://schema.org/ListItem"])
+                }
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/itemListElement"]),
+                value: %Microdata.Item{
+                  id: nil,
+                  properties: [
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/item"]),
+                      value: "https://www.foodandwine.com/fruits/tropical-fruit/mango"
+                    },
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/position"]),
+                      value: 4
+                    }
+                  ],
+                  types: MapSet.new(["http://schema.org/ListItem"])
+                }
+              }
+            ],
+            types: MapSet.new(["http://schema.org/BreadcrumbList"])
+          },
+          %Microdata.Item{
+            id: nil,
+            properties: [
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/aggregateRating"]),
+                value: nil
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/author"]),
+                value: %Microdata.Item{
+                  id: nil,
+                  properties: [
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/name"]),
+                      value: "Ian Knauer"
+                    }
+                  ],
+                  types: MapSet.new(["http://schema.org/Person"])
+                }
+              },
+              %Microdata.Property{names: MapSet.new(["http://schema.org/cookTime"]), value: nil},
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/datePublished"]),
+                value: "2016-06-02T20:35:36.000Z"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/description"]),
+                value:
+                  "With only five ingredients—puréed mango, yogurt, cream, sugar and salt—this refreshing dessert is a breeze to whip up. Make a batch ahead of time and pull it out of the fridge right before serving.\r\n\r\nSlideshow: More Mango Recipes"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/image"]),
+                value: %Microdata.Item{
+                  id: nil,
+                  properties: [
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/caption"]),
+                      value: ""
+                    },
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/height"]),
+                      value: 412
+                    },
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/url"]),
+                      value:
+                        "https://cdn-image.foodandwine.com/sites/default/files/styles/4_3_horizontal_-_1200x900/public/2014-r-xl-mango-fool.jpg?itok=yYy2aqi5"
+                    },
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/width"]),
+                      value: 550
+                    }
+                  ],
+                  types: MapSet.new(["http://schema.org/ImageObject"])
+                }
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/mainEntityOfPage"]),
+                value: "https://www.foodandwine.com/recipes/mango-fool"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/name"]),
+                value: "Mango Fool"
+              },
+              %Microdata.Property{names: MapSet.new(["http://schema.org/nutrition"]), value: nil},
+              %Microdata.Property{names: MapSet.new(["http://schema.org/prepTime"]), value: nil},
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeCategory"]),
+                value: ""
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeCuisine"]),
+                value: ""
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeIngredient"]),
+                value: "1 cup pureed mango\r\n"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeIngredient"]),
+                value: "1/2 cup whole milk yogurt\r\n"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeIngredient"]),
+                value: "3/4 cup heavy cream\r\n"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeIngredient"]),
+                value: "2 tablespoons sugar\r\n"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeIngredient"]),
+                value: "Kosher salt\r\n"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeInstructions"]),
+                value:
+                  "In a medium bowl, whisk together 3/4 cup of the pureed mango and yogurt. In a separate bowl, whisk the cream with the sugar and salt until it just hold stiff peaks. Fold the cream into the mango mixture. Divide the fool between 4 (4-to 5-ounce) glasses and chill until stiff, 1 hour. Divide the reserved 4 tablespoons mango puree between the glasses and serve."
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeYield"]),
+                value: "Serves : 4\r\n"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/totalTime"]),
+                value: "PT60M"
+              },
+              %Microdata.Property{names: MapSet.new(["http://schema.org/video"]), value: nil}
+            ],
+            types: MapSet.new(["http://schema.org/Recipe"])
+          }
+        ]
+      }
+
+      {:ok, doc: doc}
+    end
+
+    test "converts from text", %{doc: doc} do
+      assert @recipe_file |> File.read!() |> Microdata.parse() == {:ok, doc}
+    end
+
+    test "converts from file", %{doc: doc} do
+      assert Microdata.parse(file: @recipe_file) == {:ok, doc}
+    end
+
+    @tag :remote
+    test "converts from url", %{doc: doc} do
+      assert Microdata.parse(url: @recipe_url) == {:ok, doc}
+    end
+  end
+
   describe "no annotations" do
     @empty_file "./test/_cache/empty.html"
 
