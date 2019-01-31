@@ -17,6 +17,7 @@ defmodule Microdata.Strategy.JSONLD do
     doc
     |> Meeseeks.all(xpath("//script[@type=\"application/ld+json\"]"))
     |> Enum.map(&parse_result(&1))
+    |> List.flatten()
     |> Enum.reject(&is_nil/1)
   end
 
@@ -28,6 +29,11 @@ defmodule Microdata.Strategy.JSONLD do
       {:ok, object} -> parse_object(object, %{})
       {:error, _} -> nil
     end
+  end
+
+  def parse_object(object, parent_context) when is_list(object) do
+    object
+    |> Enum.map(&parse_object(&1, parent_context))
   end
 
   def parse_object(object, parent_context) do
