@@ -129,14 +129,9 @@ defmodule Microdata do
     doc = html |> Meeseeks.parse()
 
     strategies()
-    |> Enum.find_value(fn strategy ->
-      case strategy.parse_items(doc) do
-        items when items != [] -> items
-        _ -> nil
-      end
-    end)
+    |> Enum.flat_map(& &1.parse_items(doc))
     |> case do
-      items when not is_nil(items) ->
+      items when items != [] ->
         {:ok, %Document{items: items}}
 
       _ ->
