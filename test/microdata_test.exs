@@ -73,6 +73,234 @@ defmodule MicrodataTest do
               }
             ],
             types: MapSet.new(["http://schema.org/Recipe"])
+          },
+          %Microdata.Item{
+            id: nil,
+            properties: [
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/logo"]),
+                value: "https://static.seriouseats.com/1/braestar/live/img/logo-color-240x190.png"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/sameAs"]),
+                value: "https://www.facebook.com/seriouseats"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/sameAs"]),
+                value: "https://twitter.com/seriouseats"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/sameAs"]),
+                value: "https://plus.google.com/+seriouseats/posts"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/sameAs"]),
+                value: "https://pinterest.com/seriouseats"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/sameAs"]),
+                value: "https://instagram.com/seriouseats/"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/sameAs"]),
+                value: "https://www.youtube.com/user/SeriousEats"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/url"]),
+                value: "https://www.seriouseats.com"
+              }
+            ],
+            types: MapSet.new(["http://schema.org/Organization"])
+          },
+          %Microdata.Item{
+            id: nil,
+            properties: [
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/itemListElement"]),
+                value: %Microdata.Item{
+                  id: nil,
+                  properties: [
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/item"]),
+                      value: "https://www.seriouseats.com/recipes/"
+                    },
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/position"]),
+                      value: 1
+                    }
+                  ],
+                  types: MapSet.new(["http://schema.org/ListItem"])
+                }
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/itemListElement"]),
+                value: %Microdata.Item{
+                  id: nil,
+                  properties: [
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/item"]),
+                      value: "https://www.seriouseats.com/recipes/topics/ingredient"
+                    },
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/position"]),
+                      value: 2
+                    }
+                  ],
+                  types: MapSet.new(["http://schema.org/ListItem"])
+                }
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/itemListElement"]),
+                value: %Microdata.Item{
+                  id: nil,
+                  properties: [
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/item"]),
+                      value:
+                        "https://www.seriouseats.com/recipes/topics/ingredient/meats-and-poultry"
+                    },
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/position"]),
+                      value: 3
+                    }
+                  ],
+                  types: MapSet.new(["http://schema.org/ListItem"])
+                }
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/itemListElement"]),
+                value: %Microdata.Item{
+                  id: nil,
+                  properties: [
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/item"]),
+                      value:
+                        "https://www.seriouseats.com/recipes/topics/ingredient/meats-and-poultry/other-meats"
+                    },
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/position"]),
+                      value: 4
+                    }
+                  ],
+                  types: MapSet.new(["http://schema.org/ListItem"])
+                }
+              }
+            ],
+            types: MapSet.new(["http://schema.org/BreadcrumbList"])
+          },
+          %Microdata.Item{
+            id: nil,
+            properties: [
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/itemListElement"]),
+                value: %Microdata.Item{
+                  id: nil,
+                  properties: [
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/item"]),
+                      value: "https://www.seriouseats.com/recipes/"
+                    },
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/position"]),
+                      value: 1
+                    }
+                  ],
+                  types: MapSet.new(["http://schema.org/ListItem"])
+                }
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/itemListElement"]),
+                value: %Microdata.Item{
+                  id: nil,
+                  properties: [
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/item"]),
+                      value: "https://www.seriouseats.com/recipes/topics/meal"
+                    },
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/position"]),
+                      value: 2
+                    }
+                  ],
+                  types: MapSet.new(["http://schema.org/ListItem"])
+                }
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/itemListElement"]),
+                value: %Microdata.Item{
+                  id: nil,
+                  properties: [
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/item"]),
+                      value: "https://www.seriouseats.com/recipes/topics/meal/mains"
+                    },
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/position"]),
+                      value: 3
+                    }
+                  ],
+                  types: MapSet.new(["http://schema.org/ListItem"])
+                }
+              }
+            ],
+            types: MapSet.new(["http://schema.org/BreadcrumbList"])
+          },
+          %Microdata.Item{
+            id: nil,
+            properties: [
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/itemListElement"]),
+                value: %Microdata.Item{
+                  id: nil,
+                  properties: [
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/item"]),
+                      value: "https://www.seriouseats.com/recipes/"
+                    },
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/position"]),
+                      value: 1
+                    }
+                  ],
+                  types: MapSet.new(["http://schema.org/ListItem"])
+                }
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/itemListElement"]),
+                value: %Microdata.Item{
+                  id: nil,
+                  properties: [
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/item"]),
+                      value: "https://www.seriouseats.com/recipes/topics/method"
+                    },
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/position"]),
+                      value: 2
+                    }
+                  ],
+                  types: MapSet.new(["http://schema.org/ListItem"])
+                }
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/itemListElement"]),
+                value: %Microdata.Item{
+                  id: nil,
+                  properties: [
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/item"]),
+                      value: "https://www.seriouseats.com/recipes/topics/method/sous-vide"
+                    },
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/position"]),
+                      value: 3
+                    }
+                  ],
+                  types: MapSet.new(["http://schema.org/ListItem"])
+                }
+              }
+            ],
+            types: MapSet.new(["http://schema.org/BreadcrumbList"])
           }
         ]
       }
@@ -499,6 +727,571 @@ defmodule MicrodataTest do
                   reason: :no_items,
                   metadata: %{input: File.read!(@empty_file)}
                 }}
+    end
+  end
+
+  @tag runnable: true
+  describe "mixed & nested annotations" do
+    @recipe_url "https://www.fooduzzi.com/2018/08/hemp-heart-tabouli/"
+    @recipe_file "./test/_cache/html-recipe-with-ld-and-nesting.html"
+
+    setup do
+      doc = %Microdata.Document{
+        items: [
+          %Microdata.Item{
+            id: nil,
+            properties: [
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/url"]),
+                value: "https://www.fooduzzi.com/about/"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/name"]),
+                value: "About"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/url"]),
+                value: "https://www.fooduzzi.com/welcome-to-fooduzzi/"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/name"]),
+                value: "Start Here"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/url"]),
+                value: "https://www.fooduzzi.com/category/food/"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/name"]),
+                value: "Recipes"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/url"]),
+                value: "https://www.fooduzzi.com/food-index/"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/name"]),
+                value: "Recipe Index"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/url"]),
+                value: "https://www.fooduzzi.com/category/breakfast/"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/name"]),
+                value: "Breakfast"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/url"]),
+                value: "https://www.fooduzzi.com/category/oats/"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/name"]),
+                value: "Oats"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/url"]),
+                value: "https://www.fooduzzi.com/category/smoothies/"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/name"]),
+                value: "Smoothies"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/url"]),
+                value: "https://www.fooduzzi.com/category/appetizers/"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/name"]),
+                value: "Appetizers"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/url"]),
+                value: "https://www.fooduzzi.com/category/entree/"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/name"]),
+                value: "Entree"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/url"]),
+                value: "https://www.fooduzzi.com/category/salad/"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/name"]),
+                value: "Salad"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/url"]),
+                value: "https://www.fooduzzi.com/category/sandwiches/"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/name"]),
+                value: "Sandwiches"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/url"]),
+                value: "https://www.fooduzzi.com/category/soup/"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/name"]),
+                value: "Soup"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/url"]),
+                value: "https://www.fooduzzi.com/category/sauces/"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/name"]),
+                value: "Sauces"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/url"]),
+                value: "https://www.fooduzzi.com/category/snack/"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/name"]),
+                value: "Snack"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/url"]),
+                value: "https://www.fooduzzi.com/category/dessert/"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/name"]),
+                value: "Dessert"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/url"]),
+                value: ""
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/name"]),
+                value: "Dietary Restriction"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/url"]),
+                value: "https://www.fooduzzi.com/category/vegan/"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/name"]),
+                value: "Vegan"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/url"]),
+                value: "https://www.fooduzzi.com/category/glutenfree/"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/name"]),
+                value: "Gluten Free"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/url"]),
+                value: "https://www.fooduzzi.com/category/vegetarian/"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/name"]),
+                value: "Vegetarian"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/url"]),
+                value: "https://www.fooduzzi.com/category/how-tos/"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/name"]),
+                value: "Kitchen How-Tos"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/url"]),
+                value: "https://www.fooduzzi.com/category/favorites/"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/name"]),
+                value: "Favorites"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/url"]),
+                value: "https://www.fooduzzi.com/category/favorites/alexa-favorites/"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/name"]),
+                value: "Alexa Favorites"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/url"]),
+                value: "https://www.fooduzzi.com/category/favorites/reader-favorites/"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/name"]),
+                value: "Reader Favorites"
+              }
+            ],
+            types: MapSet.new(["https://schema.org/SiteNavigationElement"])
+          },
+          %Microdata.Item{
+            id: nil,
+            properties: [
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/url"]),
+                value: "https://www.fooduzzi.com/category/life/"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/name"]),
+                value: "Life"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/url"]),
+                value: "https://www.fooduzzi.com/category/life/travel/"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/name"]),
+                value: "Vegan Travel"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/url"]),
+                value: "https://www.fooduzzi.com/work-with-me/"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/name"]),
+                value: "Work with Me"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/url"]),
+                value: ""
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/name"]),
+                value: "Contact"
+              }
+            ],
+            types: MapSet.new(["https://schema.org/SiteNavigationElement"])
+          },
+          %Microdata.Item{
+            id: nil,
+            properties: [
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/name"]),
+                value: "Hemp Heart Tabouli"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/author"]),
+                value: "Fooduzzi"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/url"]),
+                value: "https://www.fooduzzi.com/2018/08/hemp-heart-tabouli/"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/image"]),
+                value:
+                  "https://www.fooduzzi.com/wp-content/uploads/2018/08/hemp-heart-tabouli-7.jpg"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/prepTime"]),
+                value: "10m"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeYield"]),
+                value: "serves 4-6"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/totalTime"]),
+                value: "0h 10m"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/description"]),
+                value:
+                  "A simple, no-cook vegan tabouli made with hemp hearts! A protein- and nutrient-packed snack, lunch, or side!"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeIngredient"]),
+                value: "2 cups packed parsley, minced"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeIngredient"]),
+                value: "5 large mint leaves, minced"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeIngredient"]),
+                value: "1/2 cup hemp hearts"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeIngredient"]),
+                value: "juice of 1-2 small lemons"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeIngredient"]),
+                value: "1 roma tomato, chopped"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeIngredient"]),
+                value: "1 large green onion, minced"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeIngredient"]),
+                value: "1/4 large english cucumber, chopped"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeIngredient"]),
+                value: "1/4 tsp. allspice, optional for toasty flavor"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeIngredient"]),
+                value: "1 Tbsp. olive oil"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeIngredient"]),
+                value: "salt + pepper"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/recipeInstructions"]),
+                value:
+                  "Mix all of your ingredients in a medium bowl. Season with salt and pepper to taste and enjoy!"
+              }
+            ],
+            types: MapSet.new(["http://schema.org/Recipe"])
+          },
+          %Microdata.Item{
+            id: nil,
+            properties: [
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/headline"]),
+                value: "Fooduzzi"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/description"]),
+                value: "the plant-based food blog"
+              }
+            ],
+            types: MapSet.new(["https://schema.org/WPHeader"])
+          },
+          %Microdata.Item{
+            id: nil,
+            properties: [
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/headline"]),
+                value: "Hemp Heart Tabouli"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/datePublished"]),
+                value: "August 20, 2018"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/author"]),
+                value: %Microdata.Item{
+                  id: nil,
+                  properties: [
+                    %Microdata.Property{
+                      names: MapSet.new(["https://schema.org/url"]),
+                      value: "https://www.fooduzzi.com/author/peduzziagmail-com/"
+                    },
+                    %Microdata.Property{
+                      names: MapSet.new(["https://schema.org/name"]),
+                      value: "Alexa [fooduzzi.com]"
+                    }
+                  ],
+                  types: MapSet.new(["https://schema.org/Person"])
+                }
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/text"]),
+                value:
+                  "If you have a garden that is totally overgrown with parsley, mint, and tomatoes, this recipe is for you! This recipe is  also for you if you’re a fan of delicious flavor. (name that show) I. Love. Tabouli. Or tabbouleh. However you spell it, I love it. There’s a fabulous Mediterranean restaurant chain here in Pittsburgh (Aladdin’s), and they have the best tabouli ever. They add it to this salad that I  swear I’m not going to get again every time I go. But alas, I end up ordering it again and it never ever ever disappoints. Tabouli is typically made with bulgur wheat, buuuut I wanted to lay off the wheat a bit. I’ve been eating a ton of wheat in the form of bread, pizza, and pasta recently. Not like it’s a bad thing in moderation. But I am desperately missing some moderation in my life. And because I’ve been working out more recently, I’ve been looking for ways to increase my protein intake. And one of my favorite plant-based protein sources is…the hemp heart! So, uh, what are hemp hearts? Fab question, my dear. They are the creamy, nutty, delicious little seeds from the hemp plant! Yes , that hemp plant.  No , they won’t get you high. You can actually buy them in pretty much any grocery store. Typically over by the oats / cereals or over by the nuts and seeds. But they’re awesome. 3 Tbsp. of hemp hearts have 10g protein. Plus omega-3s and omega-6s for healthy hearts and brains, iron, manganese, thiamine, and lots of other goodness. They’re a cute little nutritional powerhouse, and they’re delicious in this tabouli. But honestly, how could they  not be delicious in this tabouli when there are ingredients like copious amounts of parsley, a bit of mint, some lemon juice, a bit of veggies, and a wee bit of seasoning? This is the kind of dish that just  shines in its simplicity. It’s stupidly simple, but ridiculously flavorful and addictive. Wahoo! I highly suggest enjoying this tabouli in salads , on cheese plates , with crackers , in pitas, or on its own with a fork or spoon. I love it. You’ll love it. I know it. Hemp Heart Tabouli From Fooduzzi at https://www.fooduzzi.com/2018/08/hemp-heart-tabouli/ https://www.fooduzzi.com/wp-content/uploads/2018/08/hemp-heart-tabouli-7.jpg Prep: 10m Yield: serves 4-6 Total: 0h 10m A simple, no-cook vegan tabouli made with hemp hearts! A protein- and nutrient-packed snack, lunch, or side! You'll Need... 2 cups packed parsley, minced 5 large mint leaves, minced 1/2 cup hemp hearts juice of 1-2 small lemons 1 roma tomato, chopped 1 large green onion, minced 1/4 large english cucumber, chopped 1/4 tsp. allspice, optional for toasty flavor 1 Tbsp. olive oil salt + pepper Directions Mix all of your ingredients in a medium bowl. Season with salt and pepper to taste and enjoy! Generated with ♥︎ by Matcha Print Join the Fooduzzi Fam! I'll send you healthy takes on classic recipes, delectable recipe roundups, and more updates on my growing blog. You'll also receive a free eCookbook featuring my best recipes! Send me healthy recipes! Check your email to confirm and to download your free eCookbook!"
+              }
+            ],
+            types: MapSet.new(["https://schema.org/CreativeWork"])
+          },
+          %Microdata.Item{
+            id: nil,
+            properties: [
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/potentialAction"]),
+                value: %Microdata.Item{
+                  id: nil,
+                  properties: [
+                    %Microdata.Property{
+                      names: MapSet.new(["https://schema.org/query-input"]),
+                      value: ""
+                    },
+                    %Microdata.Property{
+                      names: MapSet.new(["https://schema.org/target"]),
+                      value: "https://www.fooduzzi.com/?s={s}"
+                    }
+                  ],
+                  types: MapSet.new(["https://schema.org/SearchAction"])
+                }
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/image"]),
+                value:
+                  "https://swj0y6xl9l-flywheel.netdna-ssl.com/wp-content/uploads/2019/01/popcorn-2-150x150.jpg"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/headline"]),
+                value: "Lately"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/image"]),
+                value:
+                  "https://swj0y6xl9l-flywheel.netdna-ssl.com/wp-content/uploads/2019/01/vegan-buffalo-tofu-tacos-3-150x150.jpg"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/headline"]),
+                value: "Vegan Buffalo Tofu Tacos"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/image"]),
+                value:
+                  "https://swj0y6xl9l-flywheel.netdna-ssl.com/wp-content/uploads/2019/01/homemade-whole-wheat-flour-tortillas-7-150x150.jpg"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/headline"]),
+                value: "Homemade Whole Wheat Tortillas"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/image"]),
+                value:
+                  "https://swj0y6xl9l-flywheel.netdna-ssl.com/wp-content/uploads/2019/01/easy-baked-buffalo-tofu-2-150x150.jpg"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/headline"]),
+                value: "Easy Baked Buffalo Tofu"
+              }
+            ],
+            types: MapSet.new(["https://schema.org/WPSideBar"])
+          },
+          %Microdata.Item{
+            id: nil,
+            properties: [
+              %Microdata.Property{
+                names: MapSet.new(["https://schema.org/comment"]),
+                value: %Microdata.Item{
+                  id: nil,
+                  properties: [
+                    %Microdata.Property{
+                      names: MapSet.new(["https://schema.org/author"]),
+                      value: %Microdata.Item{
+                        id: nil,
+                        properties: [
+                          %Microdata.Property{
+                            names: MapSet.new(["https://schema.org/name"]),
+                            value: "Ben Myhre"
+                          },
+                          %Microdata.Property{
+                            names: MapSet.new(["https://schema.org/url"]),
+                            value: "https://ramshacklepantry.com/"
+                          }
+                        ],
+                        types: MapSet.new(["https://schema.org/Person"])
+                      }
+                    },
+                    %Microdata.Property{
+                      names: MapSet.new(["https://schema.org/datePublished"]),
+                      value: "August 20, 2018 at 3:51 PM"
+                    },
+                    %Microdata.Property{
+                      names: MapSet.new(["https://schema.org/url"]),
+                      value: "https://www.fooduzzi.com/2018/08/hemp-heart-tabouli/#comment-19606"
+                    },
+                    %Microdata.Property{
+                      names: MapSet.new(["https://schema.org/text"]),
+                      value:
+                        "This looks really good and interesting. I have never tried hemp hearts, but not I am going to have to give it a whirl. Remember to enjoy everything with moderation… even moderation. ;) Thanks for sharing with us!"
+                    }
+                  ],
+                  types: MapSet.new(["https://schema.org/Comment"])
+                }
+              }
+            ],
+            types: MapSet.new(["https://schema.org/WebPage"])
+          },
+          %Microdata.Item{
+            id: "#person",
+            properties: [
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/name"]),
+                value: "Alexa [fooduzzi.com]"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/sameAs"]),
+                value: "https://www.facebook.com/pages/Fooduzzi/761543773962006"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/sameAs"]),
+                value: "https://instagram.com/fooduzzi/"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/sameAs"]),
+                value: "https://www.pinterest.com/fooduzzi/"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/sameAs"]),
+                value: "https://twitter.com/fooduzzi"
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/url"]),
+                value: "https://www.fooduzzi.com/"
+              }
+            ],
+            types: MapSet.new(["http://schema.org/Person"])
+          },
+          %Microdata.Item{
+            id: nil,
+            properties: [
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/itemListElement"]),
+                value: %Microdata.Item{
+                  id: nil,
+                  properties: [
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/item"]),
+                      value: "https://www.fooduzzi.com/"
+                    },
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/position"]),
+                      value: 1
+                    }
+                  ],
+                  types: MapSet.new(["http://schema.org/ListItem"])
+                }
+              },
+              %Microdata.Property{
+                names: MapSet.new(["http://schema.org/itemListElement"]),
+                value: %Microdata.Item{
+                  id: nil,
+                  properties: [
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/item"]),
+                      value: "https://www.fooduzzi.com/2018/08/hemp-heart-tabouli/"
+                    },
+                    %Microdata.Property{
+                      names: MapSet.new(["http://schema.org/position"]),
+                      value: 2
+                    }
+                  ],
+                  types: MapSet.new(["http://schema.org/ListItem"])
+                }
+              }
+            ],
+            types: MapSet.new(["http://schema.org/BreadcrumbList"])
+          }
+        ]
+      }
+
+      {:ok, doc: doc}
+    end
+
+    test "converts from text", %{doc: doc} do
+      assert @recipe_file |> File.read!() |> Microdata.parse() == {:ok, doc}
+    end
+
+    test "converts from file", %{doc: doc} do
+      assert Microdata.parse(file: @recipe_file) == {:ok, doc}
+    end
+
+    @tag :remote
+    test "converts from url", %{doc: doc} do
+      assert Microdata.parse(url: @recipe_url) == {:ok, doc}
     end
   end
 end

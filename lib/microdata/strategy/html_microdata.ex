@@ -20,12 +20,30 @@ defmodule Microdata.Strategy.HTMLMicrodata do
 
   @impl true
   def parse_items(doc) do
-    doc
-    |> Meeseeks.all(xpath("/*[@itemscope]|//*[@itemscope][not(ancestor::*[@itemscope][1])]"))
-    |> Enum.map(&parse_item/1)
+    parse_items(doc, 0)
   end
 
-  defp parse_item(item, nest_level \\ 2) do
+  defp parse_items(doc, nest_level, items \\ []) do
+    selector =
+      if nest_level == 0 do
+        "/*[@itemscope]|//*[@itemscope and not(@itemprop) and count(ancestor::*[@itemscope]) = 0]"
+      else
+        "//*[@itemscope and not(@itemprop) and count(ancestor::*[@itemscope]) = #{nest_level}]"
+      end
+
+    doc
+    |> Meeseeks.all(xpath(selector))
+    |> Enum.map(&parse_item(&1, nest_level))
+    |> case do
+      new_items when new_items != [] ->
+        parse_items(doc, nest_level + 1, new_items ++ items)
+
+      _ ->
+        items
+    end
+  end
+
+  defp parse_item(item, nest_level \\ 1) do
     item_model = %Item{
       id: item |> Meeseeks.attr("itemid") |> Helpers.parse_item_id(),
       types:
@@ -39,7 +57,7 @@ defmodule Microdata.Strategy.HTMLMicrodata do
   end
 
   defp parse_properties(item, item_model, nest_level) do
-    selector = ".//*[@itemprop][not(ancestor::*[@itemscope][#{nest_level}])]"
+    selector = ".//*[@itemprop and count(ancestor::*[@itemscope]) = #{nest_level + 1}]"
 
     item
     |> Meeseeks.all(xpath(selector))
