@@ -43,7 +43,7 @@ defmodule Microdata.Strategy.HTMLMicrodata do
     end
   end
 
-  defp parse_item(item, nest_level \\ 1) do
+  defp parse_item(item, nest_level) do
     item_model = %Item{
       id: item |> Meeseeks.attr("itemid") |> Helpers.parse_item_id(),
       types:
