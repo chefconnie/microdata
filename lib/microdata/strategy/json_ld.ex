@@ -84,6 +84,10 @@ defmodule Microdata.Strategy.JSONLD do
     end
   end
 
+  defp download_context("https://schema.org") do
+    read_locally("schema.org.json")
+  end
+
   defp download_context("http://schema.org") do
     read_locally("schema.org.json")
   end
