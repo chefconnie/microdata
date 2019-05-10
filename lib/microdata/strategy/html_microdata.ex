@@ -67,7 +67,8 @@ defmodule Microdata.Strategy.HTMLMicrodata do
   defp parse_property(property, item, nest_level) do
     %Property{
       names: property |> parse_property_names(item) |> MapSet.new(),
-      value: parse_property_value(property, nest_level)
+      value: parse_property_value(property, nest_level),
+      html: Meeseeks.html(property)
     }
   end
 
