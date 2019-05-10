@@ -13,7 +13,7 @@ defmodule Microdata.Strategy.JSONLD do
   alias Microdata.{Item, Property}
 
   @impl true
-  def parse_items(doc) do
+  def parse_items(doc, _base_uri \\ nil) do
     doc
     |> Meeseeks.all(xpath("//script[@type=\"application/ld+json\"]"))
     |> Enum.map(&parse_result(&1))

@@ -119,17 +119,19 @@ defmodule Microdata do
   @spec parse(file: String.t()) :: {:ok, Document.t()} | {:error, Error.t()}
   @spec parse(url: String.t()) :: {:ok, Document.t()} | {:error, Error.t()}
   @spec parse(String.t()) :: {:ok, Document.t()} | {:error, Error.t()}
+  @spec parse(String.t(), base_uri: String.t()) :: {:ok, Document.t()} | {:error, Error.t()}
   # credo:disable-for-next-line Credo.Check.Refactor.PipeChainStart
-  def parse(file: path), do: File.read!(path) |> parse
+  def parse(file: path), do: File.read!(path) |> parse(base_uri: path)
 
   # credo:disable-for-next-line Credo.Check.Refactor.PipeChainStart
-  def parse(url: url), do: HTTPoison.get!(url).body |> parse
+  def parse(url: url), do: HTTPoison.get!(url).body |> parse(base_uri: url)
+  def parse(html), do: parse(html, base_uri: nil)
 
-  def parse(html) do
+  def parse(html, base_uri: base_uri) do
     doc = html |> Meeseeks.parse()
 
     strategies()
-    |> Enum.flat_map(& &1.parse_items(doc))
+    |> Enum.flat_map(& &1.parse_items(doc, base_uri))
     |> case do
       items when items != [] ->
         {:ok, %Document{items: items}}

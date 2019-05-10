@@ -6,4 +6,5 @@ defmodule Microdata.Strategy do
   """
 
   @callback parse_items(Meeseeks.Document.t()) :: [Microdata.Item.t()]
+  @callback parse_items(Meeseeks.Document.t(), String.t()) :: [Microdata.Item.t()]
 end
