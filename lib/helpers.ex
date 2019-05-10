@@ -66,7 +66,7 @@ defmodule Microdata.Helpers do
   ## Examples
   ```
   iex> Microdata.Helpers.parse_item_types(nil)
-  nil
+  []
 
   iex> Microdata.Helpers.parse_item_types("foo")
   ["foo"]
@@ -80,7 +80,7 @@ defmodule Microdata.Helpers do
   ```
   """
   @spec parse_item_types(String.t()) :: [String.t()]
-  def parse_item_types(nil), do: nil
+  def parse_item_types(nil), do: []
   def parse_item_types(string), do: string |> String.trim() |> String.split(" ")
 
   @doc """
