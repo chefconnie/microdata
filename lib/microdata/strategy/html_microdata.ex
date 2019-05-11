@@ -26,7 +26,7 @@ defmodule Microdata.Strategy.HTMLMicrodata do
   defp parse_items(doc, nest_level, base_uri, items \\ []) do
     selector =
       if nest_level == 0 do
-        "/*[@itemscope]|//*[@itemscope and not(@itemprop) and count(ancestor::*[@itemscope]) = 0]"
+        "/*[@itemscope]|//*[@itemscope and count(ancestor::*[@itemscope]) = 0]"
       else
         "//*[@itemscope and not(@itemprop) and count(ancestor::*[@itemscope]) = #{nest_level}]"
       end
