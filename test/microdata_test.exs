@@ -1532,4 +1532,271 @@ defmodule MicrodataTest do
       assert {:ok, doc} == Microdata.parse(url: @recipe_url)
     end
   end
+
+  @tag runnable: true
+  describe "graph objects" do
+    @recipe_url "https://www.natrel.ca/en/recipes/dessert/vanilla-panna-cotta"
+    @recipe_file "./test/_cache/json-graph-object.html"
+
+    setup do
+      {:ok,
+       doc: %Microdata.Document{
+         items: [
+           %Microdata.Item{
+             id: nil,
+             properties: [
+               %Microdata.Property{
+                 html: nil,
+                 names: MapSet.new(["http://schema.org/author"]),
+                 value: %Microdata.Item{
+                   id: nil,
+                   properties: [
+                     %Microdata.Property{
+                       html: nil,
+                       names: MapSet.new(["http://schema.org/logo"]),
+                       value: %Microdata.Item{
+                         id: nil,
+                         properties: [
+                           %Microdata.Property{
+                             html: nil,
+                             names: MapSet.new(["http://schema.org/url"]),
+                             value:
+                               "https://www.natrel.ca/themes/custom/natrel/images/logo-natrel-en.png"
+                           }
+                         ],
+                         types: MapSet.new(["http://schema.org/ImageObject"])
+                       }
+                     },
+                     %Microdata.Property{
+                       html: nil,
+                       names: MapSet.new(["http://schema.org/name"]),
+                       value: "Natrel"
+                     },
+                     %Microdata.Property{
+                       html: nil,
+                       names: MapSet.new(["http://schema.org/url"]),
+                       value: "https://www.natrel.ca"
+                     }
+                   ],
+                   types: MapSet.new(["http://schema.org/Organization"])
+                 }
+               },
+               %Microdata.Property{
+                 html: nil,
+                 names: MapSet.new(["http://schema.org/cookTime"]),
+                 value: "00:05"
+               },
+               %Microdata.Property{
+                 html: nil,
+                 names: MapSet.new(["http://schema.org/datePublished"]),
+                 value: "2019-04-01T16:01:31-0400"
+               },
+               %Microdata.Property{
+                 html: nil,
+                 names: MapSet.new(["http://schema.org/description"]),
+                 value:
+                   "The perfect balance between sweet and light for your dessert. This classic vanilla panna cotta will definitely impress your guests!"
+               },
+               %Microdata.Property{
+                 html: nil,
+                 names: MapSet.new(["http://schema.org/image"]),
+                 value: %Microdata.Item{
+                   id: nil,
+                   properties: [
+                     %Microdata.Property{
+                       html: nil,
+                       names: MapSet.new(["http://schema.org/url"]),
+                       value:
+                         "https://www.natrel.ca/sites/default/files/images-recipe/Natrel-Panna-Cotta-Vanille-Recette.jpg"
+                     }
+                   ],
+                   types: MapSet.new(["http://schema.org/ImageObject"])
+                 }
+               },
+               %Microdata.Property{
+                 html: nil,
+                 names: MapSet.new(["http://schema.org/name"]),
+                 value: "Vanilla panna cotta"
+               },
+               %Microdata.Property{
+                 html: nil,
+                 names: MapSet.new(["http://schema.org/prepTime"]),
+                 value: "00:10"
+               },
+               %Microdata.Property{
+                 html: nil,
+                 names: MapSet.new(["http://schema.org/recipeCategory"]),
+                 value: "Dessert"
+               },
+               %Microdata.Property{
+                 html: nil,
+                 names: MapSet.new(["http://schema.org/recipeCuisine"]),
+                 value: "Dessert"
+               },
+               %Microdata.Property{
+                 html: nil,
+                 names: MapSet.new(["http://schema.org/recipeIngredient"]),
+                 value:
+                   "2 sheets of gelatin\r\n\t1 cup (250 mL) Natrel Lactose free 2%\r\n\t1 cup (250 mL) Natrel Lactose free 35% whipping cream \r\n\t1 tbsp. vanilla extract\r\n\t3 generous tablespoons of sugar"
+               },
+               %Microdata.Property{
+                 html: nil,
+                 names: MapSet.new(["http://schema.org/recipeInstructions"]),
+                 value:
+                   "Soften the gelatin sheets in a bowl of cold water.\r\n\tPour the milk and cream into a saucepan. Add the sugar and vanilla"
+               },
+               %Microdata.Property{
+                 html: nil,
+                 names: MapSet.new(["http://schema.org/recipeInstructions"]),
+                 value:
+                   "and then mix it all together. Bring it to a boil and remove from heat.\r\n\tSqueeze the water out of the gelatin sheets and add them to the preparation.\r\n\tStir with a wooden spoon or a whisk to incorporate the gelatin.\r\n\tPour the mixture into verrines or small ramekins.\r\n\tLet them cool to room temperature before refrigerating for a few hours."
+               },
+               %Microdata.Property{
+                 html: nil,
+                 names: MapSet.new(["http://schema.org/recipeYield"]),
+                 value: "6"
+               },
+               %Microdata.Property{
+                 html: nil,
+                 names: MapSet.new(["http://schema.org/totalTime"]),
+                 value: "03:15"
+               }
+             ],
+             types: MapSet.new(["http://schema.org/Recipe"])
+           },
+           %Microdata.Item{
+             id: "https://www.natrel.ca/en/recipes/dessert/vanilla-panna-cotta",
+             properties: [
+               %Microdata.Property{
+                 html: nil,
+                 names: MapSet.new(["http://schema.org/author"]),
+                 value: %Microdata.Item{
+                   id: nil,
+                   properties: [
+                     %Microdata.Property{
+                       html: nil,
+                       names: MapSet.new(["http://schema.org/logo"]),
+                       value: %Microdata.Item{
+                         id: nil,
+                         properties: [
+                           %Microdata.Property{
+                             html: nil,
+                             names: MapSet.new(["http://schema.org/url"]),
+                             value:
+                               "https://www.natrel.ca/themes/custom/natrel/images/logo-natrel-en.png"
+                           }
+                         ],
+                         types: MapSet.new(["http://schema.org/ImageObject"])
+                       }
+                     },
+                     %Microdata.Property{
+                       html: nil,
+                       names: MapSet.new(["http://schema.org/name"]),
+                       value: "Natrel"
+                     },
+                     %Microdata.Property{
+                       html: nil,
+                       names: MapSet.new(["http://schema.org/url"]),
+                       value: "https://www.natrel.ca/"
+                     }
+                   ],
+                   types: MapSet.new(["http://schema.org/Organization"])
+                 }
+               },
+               %Microdata.Property{
+                 html: nil,
+                 names: MapSet.new(["http://schema.org/breadcrumb"]),
+                 value: %Microdata.Item{
+                   id: nil,
+                   properties: [
+                     %Microdata.Property{
+                       html: nil,
+                       names: MapSet.new(["http://schema.org/itemListElement"]),
+                       value: %Microdata.Item{
+                         id: nil,
+                         properties: [
+                           %Microdata.Property{
+                             html: nil,
+                             names: MapSet.new(["http://schema.org/item"]),
+                             value: "https://www.natrel.ca/en"
+                           },
+                           %Microdata.Property{
+                             html: nil,
+                             names: MapSet.new(["http://schema.org/position"]),
+                             value: 1
+                           }
+                         ],
+                         types: MapSet.new(["http://schema.org/ListItem"])
+                       }
+                     },
+                     %Microdata.Property{
+                       html: nil,
+                       names: MapSet.new(["http://schema.org/itemListElement"]),
+                       value: %Microdata.Item{
+                         id: nil,
+                         properties: [
+                           %Microdata.Property{
+                             html: nil,
+                             names: MapSet.new(["http://schema.org/item"]),
+                             value: "https://www.natrel.ca/en/recipes"
+                           },
+                           %Microdata.Property{
+                             html: nil,
+                             names: MapSet.new(["http://schema.org/position"]),
+                             value: 2
+                           }
+                         ],
+                         types: MapSet.new(["http://schema.org/ListItem"])
+                       }
+                     },
+                     %Microdata.Property{
+                       html: nil,
+                       names: MapSet.new(["http://schema.org/itemListElement"]),
+                       value: %Microdata.Item{
+                         id: nil,
+                         properties: [
+                           %Microdata.Property{
+                             html: nil,
+                             names: MapSet.new(["http://schema.org/item"]),
+                             value: "https://www.natrel.ca/en/recipes/dessert"
+                           },
+                           %Microdata.Property{
+                             html: nil,
+                             names: MapSet.new(["http://schema.org/position"]),
+                             value: 3
+                           }
+                         ],
+                         types: MapSet.new(["http://schema.org/ListItem"])
+                       }
+                     }
+                   ],
+                   types: MapSet.new(["http://schema.org/BreadcrumbList"])
+                 }
+               },
+               %Microdata.Property{
+                 html: nil,
+                 names: MapSet.new(["http://schema.org/description"]),
+                 value:
+                   "The perfect balance between sweet and light for your dessert. This classic vanilla panna cotta will definitely impress your guests!"
+               }
+             ],
+             types: MapSet.new(["http://schema.org/WebPage"])
+           }
+         ]
+       }}
+    end
+
+    test "converts from text", %{doc: doc} do
+      assert {:ok, doc} == @recipe_file |> File.read!() |> Microdata.parse()
+    end
+
+    test "converts from file", %{doc: doc} do
+      assert {:ok, doc} == Microdata.parse(file: @recipe_file)
+    end
+
+    @tag :remote
+    test "converts from url", %{doc: doc} do
+      assert {:ok, doc} == Microdata.parse(url: @recipe_url)
+    end
+  end
 end

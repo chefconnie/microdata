@@ -31,6 +31,8 @@ defmodule Microdata.Strategy.JSONLD do
     end
   end
 
+  def parse_object(object, _) when is_nil(object), do: nil
+
   def parse_object(object, parent_context) when is_list(object) do
     object
     |> Enum.map(&parse_object(&1, parent_context))
@@ -51,19 +53,23 @@ defmodule Microdata.Strategy.JSONLD do
       |> normalize_types(context)
       |> Enum.into(MapSet.new())
 
-    properties =
-      object
-      |> extract_properties()
-      |> map_terms(context)
-      |> normalize_values(context)
-      |> List.flatten()
-      |> to_property_list()
+    object
+    |> extract_properties()
+    |> map_terms(context)
+    |> normalize_values(context)
+    |> List.flatten()
+    |> to_property_list()
+    |> case do
+      [] ->
+        parse_object(object["@graph"], context)
 
-    %Item{
-      id: id,
-      types: types,
-      properties: properties
-    }
+      properties ->
+        %Item{
+          id: id,
+          types: types,
+          properties: properties
+        }
+    end
   end
 
   defp extract_context(object) do
