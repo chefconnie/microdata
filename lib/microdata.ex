@@ -61,7 +61,7 @@ defmodule Microdata do
   Next time you're cooking, **don't risk** getting **raw chicken juice** or **sticky sauces** on your **fancy cookbooks** and **expensive electronics**! We are working on **Connie**, a **conversational cooking assistant** that uses Alexa & Google Home to answer questions like:
 
   > What am I supposed to be doing?
-  > 
+  >
   > What's next for the lasagna?
 
   We wrote this lib to parse imported recipes and wanted to share it back with the community, as there are loads of ways you might use microdata in your own projects. Hope you enjoy!
@@ -139,6 +139,10 @@ defmodule Microdata do
       _ ->
         {:error, Error.new(:document, :no_items, %{input: html})}
     end
+  end
+
+  def json_library do
+    Application.get_env(:microdata, :json_library, Poison)
   end
 
   defp strategies do

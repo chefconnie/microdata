@@ -24,7 +24,7 @@ defmodule Microdata.Strategy.JSONLD do
   defp parse_result(result) do
     result
     |> Meeseeks.data()
-    |> Poison.decode()
+    |> Microdata.json_library().decode()
     |> case do
       {:ok, object} -> parse_object(object, %{})
       {:error, _} -> nil
@@ -82,7 +82,7 @@ defmodule Microdata.Strategy.JSONLD do
       context when is_binary(context) ->
         context
         |> download_context()
-        |> Poison.decode!()
+        |> Microdata.json_library().decode!()
         |> extract_context()
 
       _ ->
