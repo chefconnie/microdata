@@ -142,7 +142,17 @@ defmodule Microdata do
   end
 
   def json_library do
-    Application.get_env(:microdata, :json_library, Poison)
+    configured_lib = Application.get_env(:microdata, :json_library, Poison)
+
+    unless Code.ensure_loaded?(configured_lib) do
+      IO.warn("""
+      found #{inspect(configured_lib)} in your application configuration
+      for JSON encoding, but module #{inspect(configured_lib)} is not available.
+      Ensure #{inspect(configured_lib)} is listed as a dependency in mix.exs.
+      """)
+    end
+
+    configured_lib
   end
 
   defp strategies do
