@@ -19,22 +19,26 @@ Because html5ever is a Rust library, you will need to have the Rust compiler [in
 
 This dependency is necessary because there are no HTML5 spec compliant parsers written in Elixir/Erlang.
 
-### HTTPoison
-If you are using the provided `Microdata.parse(url: ...)` helper function, your library / application will need to declare a dep on HTTPoison (see below).
-
 ## Installation
 
 - Ensure your build machine has the Rust compiler installed (see above)
-- Add `microdata` to your `mix.exs` deps
-    - If you plan to use the `Microdata.parse(url: ...)` helper function, include a line for `{:httpoison, "~> 1.0"}`
+- Add `microdata` to your `mix.exs` deps as well as a JSON library of your choice
+
 ```elixir
 def deps do
   [
     {:microdata, "~> 0.1.0"},
-    {:httpoison, "~> 1.0"} # optional
+    {:poison, "~> 4.0.1"}
   ]
 end
 ```
+
+- Configure the JSON library in your config.exs
+
+```elixir
+config :microdata, :json_library, Poison
+```
+
 - Run `mix deps.get`
 
 ## Usage
@@ -60,7 +64,7 @@ Thanks muchly to the team + community behind [meeseeks](https://hex.pm/packages/
 Next time you're cooking, **don't risk** getting **raw chicken juice** or **sticky sauces** on your **fancy cookbooks** and **expensive electronics**! We are working on **Connie**, a **conversational cooking assistant** that uses Alexa & Google Home to answer questions like:
 
 > What am I supposed to be doing?
-> 
+>
 > What's next for the lasagna?
 
 We wrote this lib to parse imported recipes and wanted to share it back with the community, as there are loads of ways you might use microdata in your own projects. Hope you enjoy!
